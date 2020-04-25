@@ -8,4 +8,6 @@ unlink genome.fasta
 for i in *.fa; do echo "samtools index "$i""; done | parallel -j100
 for i in *.fa; do echo "cmscan -Z $(awk '{$x=$2*2/10^9; print $x}' "$i".fai) --cut_ga --rfam --nohmmonly --tblout $(basename "$i" .fa).tblout --fmt 2 --clanin Rfam.clanin Rfam.cm "$i" >
 $(basename "$i" .fa).cmscan"; done | parallel -j30
-cd .. && echo "done"
+cat *.cmscan > ../result.cmscan
+cat *.tblout > ../result.tblout
+cd .. && echo "done; check the result.* files"
