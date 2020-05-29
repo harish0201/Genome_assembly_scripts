@@ -1,7 +1,8 @@
-#uses mmseqs2 as a replacement to tblastn, commands are in reference to gemoma and various threads on mmseqs2
+# uses mmseqs2 as a replacement to tblastn, commands are in reference to gemoma and various threads on mmseqs2
 # target index needs to be built with the following command:
 # mmseqs createdb genome.fasta target
 # mmseqs createindex target tmp  --comp-bias-corr 0 --mask 0 --search-type 2
+# optional speedup can be achieved by splitting the protein queries into many files. Adjust process for I/O though
 
 export PATH=$PATH:/apps/mmseqs/bin/
 query=$(basename "$1" .fasta)
